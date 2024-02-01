@@ -121,6 +121,19 @@ public class stringAlgos {
         String word14 = "a";
         String word24 = "e";
         System.out.println(shortestDistance(words4, word14, word24));
+
+        //number of good pairs
+        int[] nums11 = {1, 2, 3, 1, 1, 3};
+        int result1 = numGoodPairs(nums11);
+        System.out.println("Result 1: " + result1 + " (Expected: 4)");
+
+        int[] nums22 = {1, 1, 1, 1};
+        int result2 = numGoodPairs(nums22);
+        System.out.println("Result 2: " + result2 + " (Expected: 6)");
+
+        int[] nums33 = {1, 2, 3};
+        int result3 = numGoodPairs(nums33);
+        System.out.println("Result 3: " + result3 + " (Expected: 0)");
     }
 
     public static boolean containsDuplicate(int[] dataset) {
@@ -222,5 +235,21 @@ public class stringAlgos {
             }
         }
         return shortestDist;
+    }
+
+    public static int numGoodPairs(int[] elementArr) {
+        int pairCount = 0;
+        HashMap<Integer, ArrayList<Integer>> elementMap = new HashMap<>();
+
+        for (int i = 0; i < elementArr.length; i++) {
+            if (elementMap.get(elementArr[i]) != null) {
+                pairCount += 1;
+                elementMap.get(elementArr[i]).add(i);
+            } else {
+                elementMap.put(elementArr[i], new ArrayList<>(List.of(i)));
+            }
+        }
+        System.out.println(elementMap);
+        return pairCount;
     }
 }
